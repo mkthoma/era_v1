@@ -1,7 +1,7 @@
 import torch
 import torch.optim as optim
 from tqdm import tqdm
-!pip install torchsummary
+import torch.nn.functional as F
 from torchsummary import summary
 
 
