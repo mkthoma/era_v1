@@ -1,10 +1,8 @@
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
 from torchvision import datasets, transforms
-from model import Net, model_summary
 
+# Defining the train and test data loaders and the different transformations that need to be applied.
+# Here we are converting the images to tensors and standarding the values between 0 and 1 based on the mean and standard deviation.
 def data_loader(batch_size, kwargs):
     train_loader = torch.utils.data.DataLoader(
         datasets.MNIST('../data', train=True, download=True,
