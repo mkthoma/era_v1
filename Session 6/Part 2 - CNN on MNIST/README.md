@@ -6,7 +6,42 @@ In this exercise, we will be using the MNIST data for classifying handwritten di
 - Use Batch Normalization and  Dropout,
 - A Fully connected layer and have used GAP (Optional). 
 
+## Introduction
+First let's look at a few terms that are used in the mode.
+### Batch Normalization
+Normalization is a procedure to change the value of the numeric variable in the dataset to a typical scale, without misshaping contrasts in the range of value.
+
+Batch normalization is a technique for training very deep neural networks that normalizes the contributions to a layer for every mini-batch. This has the impact of settling the learning process and drastically decreasing the number of training epochs required to train deep neural networks.
+
+Batch normalization gives a rich method of parametrizing practically any deep neural network. The reparameterization fundamentally decreases the issue of planning updates across numerous layers.
+
+### Dropout
+The term “dropout” refers to dropping out the nodes (input and hidden layer) in a neural network (as seen in Figure 1). All the forward and backwards connections with a dropped node are temporarily removed, thus creating a new network architecture out of the parent network. The nodes are dropped by a dropout probability of p.
+
+For a given input x: {1, 2, 3, 4, 5} to the fully connected layer. We have a dropout layer with probability p = 0.2 (or keep probability = 0.8). During the forward propagation (training) from the input x, 20% of the nodes would be dropped, i.e. the x could become {1, 0, 3, 4, 5} or {1, 2, 0, 4, 5} and so on. Similarly, it applied to the hidden layers.
+
+For instance, if the hidden layers have 1000 neurons (nodes) and a dropout is applied with drop probability = 0.5, then 500 neurons would be randomly dropped in every iteration (batch).
+
+### Global Average Pooling
+Global Average Pooling is a pooling operation designed to replace fully connected layers in classical CNNs. The idea is to generate one feature map for each corresponding category of the classification task in the last mlpconv layer. Instead of adding fully connected layers on top of the feature maps, we take the average of each feature map, and the resulting vector is fed directly into the softmax layer.
+
+One advantage of global average pooling over the fully connected layers is that it is more native to the convolution structure by enforcing correspondences between feature maps and categories. Thus the feature maps can be easily interpreted as categories confidence maps. Another advantage is that there is no parameter to optimize in the global average pooling thus overfitting is avoided at this layer. Furthermore, global average pooling sums out the spatial information, thus it is more robust to spatial translations of the input.
+
+### Max Pooling
+Max pooling is a pooling operation commonly used in convolutional neural networks (CNNs) for feature extraction. It reduces the spatial dimensions (width and height) of the input while preserving the most salient features.
+
+The process of max pooling involves dividing the input image or feature map into non-overlapping rectangular regions (often referred to as pooling regions or windows). Within each pooling region, the maximum value is selected as the representative value for that region. The resulting values are then used to form a downsampled representation of the input.
+
+The main purpose of max pooling is to downsample the input, reducing its spatial size and the number of parameters, while retaining the most important features. By taking the maximum value within each pooling region, the operation focuses on capturing the strongest activation within that region and discards less relevant information. This can help to achieve translation invariance and reduce the sensitivity to small spatial variations in the input.
+
+Typically, max pooling is performed with a fixed size and stride. The size refers to the dimensions of the pooling regions, and the stride specifies the step size used to move the pooling window across the input. Common choices for the size and stride are 2x2 or 3x3 with a stride of 2, which effectively reduces the spatial dimensions by half.
+
+Overall, max pooling is a widely used technique in CNNs for downsampling and extracting the most prominent features from input data, helping to reduce computational complexity and improve the network's ability to generalize to new data.
+
 ## Model Architecture
+The model consists of different layers of convolutional layers, max pooling, batch normalization, dropout, global average pooling and a fully connected layer at the end.
+
+
 ```python
 class Net(nn.Module):
     def __init__(self):
@@ -62,7 +97,7 @@ class Net(nn.Module):
 - After conv6, an average pooling layer (gpool) with a kernel size of 7x7 is applied to globally average the feature maps.
 - A 2D dropout layer (drop) is applied with a dropout rate of 0.1.
 - The output of gpool is reshaped using view to have a shape of (-1, 10), where -1 represents the batch size and 10 is the number of classes.
-- The softmax function (F.log_softmax) is applied to obtain the final output probabilities for each class.
+- The log softmax function (F.log_softmax) is applied to obtain the final output probabilities for each class.
 
 ## Model Summary
 ```
@@ -99,7 +134,7 @@ Non-trainable params: 0
 Above we can see the model summary. Here we can note that the total parameters of the model is around 17K.
 
 ## Model Usage
-1. Define the train and test dataloaders.
+1. Define the train and test dataloaders (utils.py)
 
     ```python
     train_loader = torch.utils.data.DataLoader(
@@ -118,7 +153,7 @@ Above we can see the model summary. Here we can note that the total parameters o
         batch_size=batch_size, shuffle=True, **kwargs)
     ```
 
-- Train Loader:
+- `Train Loader`:
 
     - The datasets.MNIST function is used to create a dataset object for the MNIST training set.
     - The dataset is located in the '../data' directory and is downloaded if necessary.
@@ -127,12 +162,12 @@ Above we can see the model summary. Here we can note that the total parameters o
     - The dataset and transformations are passed as arguments to torch.utils.data.DataLoader to create a data loader.
     - The batch_size, shuffle, and other parameters (collected in the **kwargs variable) are specified to control the behavior of the data loader.
 
-- Test Loader:
+- `Test Loader`:
     - Similar to the train loader, the datasets.MNIST function is used to create a dataset object for the MNIST test set.
     - The same transforms.Compose object is used to apply the same transformations to the test set.
     - A data loader is created for the test set using torch.utils.data.DataLoader with the same parameters as the train loader.
 
-2. Define train and test functions
+2. Define train and test functions (models.py)
 
     ```python
     from tqdm import tqdm
@@ -148,7 +183,7 @@ Above we can see the model summary. Here we can note that the total parameters o
             optimizer.step()
             pbar.set_description(desc= f'loss={loss.item()} batch_id={batch_idx}')
     ```
-- train()
+- `train()`
     - The code begins by importing the tqdm library, which provides a progress bar to track the training progress.
     - The train function is defined, taking the following parameters:
         - model: The model to be trained.
@@ -164,7 +199,7 @@ Above we can see the model summary. Here we can note that the total parameters o
     - The negative log-likelihood loss (F.nll_loss) is computed by comparing the model's output with the target labels (loss = F.nll_loss(output, target)).
     - The gradients are computed by performing backpropagation through the network (loss.backward()).
     - The optimizer updates the model's parameters based on the computed gradients (optimizer.step()).
-- test()
+- `test()`
 ```python
 def test(model, device, test_loader):
     model.eval()
