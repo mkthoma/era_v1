@@ -101,4 +101,4 @@ We will dive deeper into how we can deisgn an architecture that can give us the 
     Loss=0.00881284661591053 Batch_id=468 Accuracy=98.77: 100%|██████████| 469/469 [00:21<00:00, 22.12it/s]
 
     Test set: Average loss: 0.0189, Accuracy: 9940/10000 (99.40%)
-```
+    ```
