@@ -80,7 +80,7 @@ We will dive deeper into how we can deisgn an architecture that can give us the 
       - Total parameters - 7,550
       - Best Training Accuracy - 98.82%
       - Best Testing Accuracy - 99.4% (12th to 15th epoch)
-  - Analysis -  We have augmented the image using random rotation between -7 and 7 degrees and introduced a learning rate on plateau in this model. The model is performing better than before and able to achieve a accuracy of 99.41% twice and 99.38%. Different learning rate using step and one cycle were tried out but this one has the best accuracy observed. It is better to let the model decide how the learning rate should be changed rather than us trying to make the choice for the model. 
+  - Analysis -  We have augmented the image using random rotation between -7 and 7 degrees and introduced a learning rate on plateau in this model. The model is performing better than before and able to achieve a accuracy of 99.4% towards the last epochs. Different learning rate using step and one cycle were tried out but this one has the best accuracy observed. It is better to let the model decide how the learning rate should be changed rather than us trying to make the choice for the model. 
     ```
     EPOCH: 12
     Loss=0.00756158446893096 Batch_id=468 Accuracy=98.69: 100%|██████████| 469/469 [00:20<00:00, 23.41it/s]
@@ -102,3 +102,9 @@ We will dive deeper into how we can deisgn an architecture that can give us the 
 
     Test set: Average loss: 0.0189, Accuracy: 9940/10000 (99.40%)
     ```
+
+## Final Model
+Our final model has been achieved using the set of constraints that we initially defined and the model can be visualized below as 
+
+![session7_model](https://github.com/mkthoma/era_v1/assets/135134412/f6d5eb0f-993e-4624-842d-4563cd9d8370)
+
