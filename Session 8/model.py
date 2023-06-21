@@ -6,6 +6,8 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torchsummary import summary
+import pandas as pd
+
 
 ########################################################################################################################################################################
 ########################################################################################################################################################################
@@ -293,6 +295,9 @@ train_losses = []
 test_losses = []
 train_acc = []
 test_acc = []
+train_loss = []
+train_accuracy = []
+
 
 def train(model, device, train_loader, optimizer, epoch):
   model.train()
@@ -300,7 +305,7 @@ def train(model, device, train_loader, optimizer, epoch):
   correct = 0
   processed = 0
   for batch_idx, (data, target) in enumerate(pbar):
-    # get samples
+        # get samples
     data, target = data.to(device), target.to(device)
 
     # Init
@@ -327,6 +332,13 @@ def train(model, device, train_loader, optimizer, epoch):
 
     pbar.set_description(desc= f'Batch_id={batch_idx}')
     train_acc.append(100*correct/processed)
+
+  train_accuracy.append(train_acc[-1])
+  train_loss.append([x.item() for x in train_losses][-1])
+
+
+
+
 
 def test(model, device, test_loader):
     model.eval()
@@ -356,3 +368,17 @@ def test(model, device, test_loader):
 
     return misclassified_images[:10], misclassified_labels[:10], misclassified_predictions[:10]
 
+
+def train_test_loss_accuracy(epochs):
+    epoch_list = [ i+1 for i in range(epochs)]
+    df = pd.DataFrame(epoch_list, columns=['epoch'])
+    train_loss1 = [round(i,2) for i in train_loss]
+    train_accuracy1 = [round(i,2) for i in train_accuracy]
+    test_loss1 = [round(i,2) for i in test_losses]
+    test_accuracy1 = [round(i,2) for i in test_acc]
+
+    df['train_loss'] = train_loss1
+    df['train_accuracy'] = train_accuracy1
+    df['test_loss'] = test_loss1
+    df['test_accuracy'] = test_accuracy1
+    return df
