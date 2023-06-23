@@ -166,7 +166,7 @@ The model takes as paramter which type of normalization to use in the form of a 
 - In case of layer normalization, while calling the model, set the `use_layer_norm` flag as `True`.
 
 ## Training and Test Accuracies
-### Batch Normalization
+### [Batch Normalization](https://github.com/mkthoma/era_v1/blob/main/Session%208/Notebooks/Session8_Batch_Norm.ipynb)
 - Training Accuracy - 74.53%
 - Testing Accuracy - 74.71%
 
@@ -175,7 +175,7 @@ The model takes as paramter which type of normalization to use in the form of a 
 
 ![bn graph](https://github.com/mkthoma/era_v1/assets/135134412/49bb869b-0f95-414d-959d-23fafeff5812)
 
-### Group Normalization
+### [Group Normalization](https://github.com/mkthoma/era_v1/blob/main/Session%208/Notebooks/Session8_Group_Norm.ipynb)
 - Training Accuracy - 72.95%
 - Testing Accuracy - 72.93%
 
@@ -183,7 +183,7 @@ The model takes as paramter which type of normalization to use in the form of a 
 
 ![gn graph](https://github.com/mkthoma/era_v1/assets/135134412/2866bc29-917b-4bf4-8656-d1bc5795eb99)
 
-### Layer Normalization
+### [Layer Normalization](https://github.com/mkthoma/era_v1/blob/main/Session%208/Notebooks/Session8_Layer_Norm.ipynb)
 - Training Accuracy - 72.99%
 - Testing Accuracy - 73.42%
 
