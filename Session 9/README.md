@@ -276,11 +276,12 @@ Estimated Total Size (MB): 7.44
 ```
 
 ## Training and Test Accuracies
-From the plots below we can see that we have achieved accuracy greater than 85% towards from about $85^{th}$ epoch.
+From the plots below we can see that we have achieved accuracy greater than 85% towards from about $82^{nd}$ epoch.
+
+![image](https://github.com/mkthoma/era_v1/assets/135134412/7129d7d7-7d80-43ea-b018-6762db32f178)
 
 ![s9 train test](https://github.com/mkthoma/era_v1/assets/135134412/5b01fc40-69f8-42d8-958d-dd2f45f2cba9)
 
-![image](https://github.com/mkthoma/era_v1/assets/135134412/a125e11b-518f-430b-a627-89757ba759e6)
 
 ## Misclassified Images
 Now we shall look at the misclassified images that are present after applying the model on the dataset.
