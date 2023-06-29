@@ -79,6 +79,9 @@ In dilated convolution, the kernel is dilated by inserting gaps (or zeros) betwe
 
   ![0_3cTXIemm0k3Sbask](https://github.com/mkthoma/era_v1/assets/135134412/9cb4acd5-ca03-43cc-b2c7-7b6f55f05686)
 
+For a 3x3 kernel, applying dilation of 1,2,3 and 4 and the effective receptive field can be visualized as shown below
+
+![image](https://github.com/mkthoma/era_v1/assets/135134412/ebeca101-80ac-433b-a03e-587ba99b1404)
 
 Dilated convolution can be particularly useful in scenarios where capturing fine-grained details or a wider context is important. It helps overcome the limitations of standard convolutions, which might overlook important features when the receptive field is limited.
 
@@ -181,14 +184,10 @@ nn.ReLU(),nn.BatchNorm2d(64),nn.Dropout(dropout_value))
 # OUTPUT BLOCK
 
 # Applying Global Average Pooling
-self.gap = nn.Sequential(
-    nn.AvgPool2d(kernel_size=2)
-)
+self.gap = nn.Sequential(nn.AvgPool2d(kernel_size=2))
 
-# fully connected layer
-self.convblock13 = nn.Sequential(
-    nn.Linear(in_features=64, out_features=10, bias=False)
-)
+# Fully Connected layer
+self.convblock13 = nn.Sequential(nn.Linear(in_features=64, out_features=10, bias=False))
 ```
 
 In each convolutional block we can see that the thrid layer is a dilated convolution in place of a max pooling layer. The dilation rates are changed for each block to achieve the desired receptive field at the end.
