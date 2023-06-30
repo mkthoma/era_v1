@@ -8,17 +8,9 @@ from torchvision import datasets, transforms
 from torchsummary import summary
 import pandas as pd
 
-
-########################################################################################################################################################################
-########################################################################################################################################################################
-########################################################################################################################################################################
-#######################################################################        SESSION 8       #########################################################################
-########################################################################################################################################################################
-########################################################################################################################################################################
-########################################################################################################################################################################
-
 dropout_value = 0.1
 
+# Model
 class Net(nn.Module):
     def __init__(self):  # Add self parameter here
         super(Net, self).__init__()
@@ -107,6 +99,7 @@ class Net(nn.Module):
           ) # output_size = 4, RF=41
 
         # CONVOLUTION BLOCK 4
+        # Depth wise seperable convolution
         self.convblock10 = nn.Sequential(
             nn.Conv2d(in_channels=16, out_channels=16, kernel_size=(3, 3), padding=1, groups=16, bias=False),
             nn.Conv2d(in_channels=16, out_channels=32, kernel_size=(1, 1), bias=False),
@@ -166,6 +159,7 @@ class Net(nn.Module):
 def model_summary(model, input_size):
     summary(model, input_size)
 
+# variables to store train and test accuracy/losses
 train_losses = []
 test_losses = []
 train_acc = []
@@ -173,7 +167,7 @@ test_acc = []
 train_loss = []
 train_accuracy = []
 
-
+# train  function
 def train(model, device, train_loader, optimizer, epoch):
   model.train()
   pbar = tqdm(train_loader)
@@ -217,7 +211,7 @@ def train(model, device, train_loader, optimizer, epoch):
 
 
 
-
+# test functiion
 def test(model, device, test_loader):
     model.eval()
     test_loss = 0
@@ -252,7 +246,7 @@ def test(model, device, test_loader):
 
     return misclassified_images[:10], misclassified_labels[:10], misclassified_predictions[:10]
 
-
+# stores all accuracy and losses as a dataframe
 def train_test_loss_accuracy(epochs):
     epoch_list = [ i+1 for i in range(epochs)]
     df = pd.DataFrame(epoch_list, columns=['epoch'])
