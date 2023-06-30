@@ -5,6 +5,7 @@ import albumentations as A
 import torchvision
 from albumentations.pytorch import ToTensorV2
 
+# This class will download the cifat10 dataset and apply the transformations for train and test data
 class Cifar10SearchDataset(torchvision.datasets.CIFAR10):
     def __init__(self, root="~/data/cifar10", train=True, download=True, transform=None):
         super().__init__(root=root, train=train, download=download, transform=transform)
@@ -38,6 +39,7 @@ class Cifar10SearchDataset(torchvision.datasets.CIFAR10):
         # Calculate the mean of the dataset
         return tuple(self.data.mean(axis=(0, 1, 2)) / 255)
 
+# function for train and test dataloader
 def train_test_dataloader(dataloader_args):
 
   train_data = Cifar10SearchDataset(train=True, download=True, transform="train")

@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# shows images from each class
 def show_class_samples(data_loader, classes):
     # Obtain one batch of training images
     dataiter = iter(data_loader)
@@ -38,7 +39,7 @@ def imshow(img):
     img = img / 2 + 0.5  # unnormalize
     plt.imshow(np.transpose(img, (1, 2, 0)))  # convert from Tensor image
 
-
+# shows random images from different classes
 def show_random_samples(data_loader, classes):
     # obtain one batch of training images
     dataiter = iter(data_loader)
@@ -57,7 +58,7 @@ def show_random_samples(data_loader, classes):
         ax.imshow(images[idx])
         ax.set_title(classes[labels[idx]])
 
-
+# shows rgb channel of an image
 def show_image_rgb(data_loader, classes):
     # Obtain one batch of training images
     dataiter = iter(data_loader)
@@ -107,6 +108,7 @@ def show_image_rgb(data_loader, classes):
 
     plt.show()
 
+# shows misclassified images
 def show_misclassified_img(misclassified_images, misclassified_labels, misclassified_predictions, classes):
     print("Misclassified Images:")
     fig = plt.figure(figsize=(20, 4))
@@ -124,6 +126,7 @@ def show_misclassified_img(misclassified_images, misclassified_labels, misclassi
     plt.tight_layout()
     plt.show()
 
+# plots train and test accuracy and losses
 def show_accuracy_loss(train_losses, train_acc, test_losses, test_acc):
     train_loss_array = [x.item() for x in train_losses]
     fig, axs = plt.subplots(2,2,figsize=(15,10))
