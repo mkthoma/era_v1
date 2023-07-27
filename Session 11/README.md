@@ -4,7 +4,7 @@ In this exercise we will be looking to implement a ResNet18 architecture on the 
 ## Objective
 We will try to build a Resnet18 Architecture. We will also use the LRFinder module to find the maximum learning rate and use the one cycle learning rate policy for the model. We will also be using the [GradCAM](https://github.com/jacobgil/pytorch-grad-cam) library to identify the misclassifications.
 
-The repo can be found [here](https://github.com/mkthoma/grad_CAM_cifar10)
+The code repo can be found [here](https://github.com/mkthoma/grad_CAM_cifar10)
 ## CIFAR 10
 
 The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images. The 10 classes in CIFAR-10 are:
