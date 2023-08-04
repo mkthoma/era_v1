@@ -160,6 +160,7 @@ The calculations for Receptive field and output channel size are shown below:
 ![image](https://github.com/mkthoma/era_v1/assets/135134412/2caa50e3-ec18-4293-868a-54182fdaf189)
 
 The model summary is as show below:
+
 ![image](https://github.com/mkthoma/era_v1/assets/135134412/a0875bfd-916a-4c30-b67b-061e538a2328)
 
 
@@ -193,6 +194,7 @@ To use the custom_ResNet model for training and evaluation, follow these steps:
 - Optionally, use the show_misclassified_images method to visualize misclassified images.
 
 The test accuracy is shown below:
+
 ![image](https://github.com/mkthoma/era_v1/assets/135134412/cd3820f7-1acc-4f92-bd61-f6da871b675a)
 
 
