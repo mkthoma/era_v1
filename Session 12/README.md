@@ -4,6 +4,7 @@ In this exercise we will be looking to implement a custom ResNet architecture on
 ## Objective
 We will try to build a custom Resnet Architecture on the CIFAR10 dataset. We will try to achieve this in 24 epochs. This experimentation is similar to David Page's [exercise](https://github.com/davidcpage/cifar10-fast).
 
+The live implementation can be found on HuggingFace [here](https://huggingface.co/spaces/mkthoma/cifar10_customResNet).
 ## CIFAR 10
 
 The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images. The 10 classes in CIFAR-10 are:
